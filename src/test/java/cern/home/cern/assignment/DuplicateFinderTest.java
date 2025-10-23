@@ -3,6 +3,7 @@ package cern.home.cern.assignment;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Stream;
@@ -15,7 +16,7 @@ class DuplicateFinderTest {
 
     @Test
     @DisplayName("Should find duplicates in the example case")
-    void testExampleCase() {
+    void givenStreamWithMultipleDuplicates_whenFindingDuplicates_thenReturnsThemInOrderOfFirstAppearance() {
         Stream<String> input = Stream.of("b", "a", "c", "c", "e", "a", "c", "d", "c", "d");
         List<String> result = DuplicateFinder.findDuplicates(input).toList();
 
@@ -24,7 +25,7 @@ class DuplicateFinderTest {
 
     @Test
     @DisplayName("Should return empty stream when no duplicates exist")
-    void testNoDuplicates() {
+    void givenStreamWithNoDuplicates_whenFindingDuplicates_thenReturnsEmptyStream() {
         Stream<String> input = Stream.of("a", "b", "c", "d", "e");
         List<String> result = DuplicateFinder.findDuplicates(input).toList();
 
@@ -33,7 +34,7 @@ class DuplicateFinderTest {
 
     @Test
     @DisplayName("Should return empty stream for empty input")
-    void testEmptyStream() {
+    void givenEmptyStream_whenFindingDuplicates_thenReturnsEmptyStream() {
         Stream<String> input = Stream.empty();
         List<String> result = DuplicateFinder.findDuplicates(input).toList();
 
@@ -42,7 +43,7 @@ class DuplicateFinderTest {
 
     @Test
     @DisplayName("Should preserve order of first appearance")
-    void testOrderPreservation() {
+    void givenStreamWithDuplicates_whenFindingDuplicates_thenPreservesOrderOfFirstAppearance() {
         Stream<String> input = Stream.of("z", "a", "m", "b", "z", "m", "a");
         List<String> result = DuplicateFinder.findDuplicates(input).toList();
 
@@ -51,7 +52,7 @@ class DuplicateFinderTest {
 
     @Test
     @DisplayName("Should handle null elements in stream")
-    void testWithNullElements() {
+    void givenStreamWithNullElements_whenFindingDuplicates_thenHandlesNullsProperly() {
         Stream<String> input = Stream.of("a", null, "b", null, "a");
         List<String> result = DuplicateFinder.findDuplicates(input).toList();
 
@@ -60,7 +61,7 @@ class DuplicateFinderTest {
 
     @Test
     @DisplayName("Should throw IllegalArgumentException when stream is null")
-    void testNullStream() {
+    void givenNullStream_whenFindingDuplicates_thenThrowsIllegalArgumentException() {
         Stream<String> input = null;
 
         assertThatThrownBy(() -> DuplicateFinder.findDuplicates(input))
@@ -70,7 +71,7 @@ class DuplicateFinderTest {
 
     @Test
     @DisplayName("Should work with custom Serializable objects")
-    void testWithCustomSerializableObjects() {
+    void givenStreamWithCustomSerializableObjects_whenFindingDuplicates_thenIdentifiesDuplicatesCorrectly() {
         TestObject obj1 = new TestObject(1, "first");
         TestObject obj2 = new TestObject(2, "second");
         TestObject obj1Duplicate = new TestObject(1, "first");
@@ -85,6 +86,7 @@ class DuplicateFinderTest {
      * Test class for verifying behavior with custom Serializable objects.
      */
     private static class TestObject implements Serializable {
+        @Serial
         private static final long serialVersionUID = 1L;
 
         private final int id;
