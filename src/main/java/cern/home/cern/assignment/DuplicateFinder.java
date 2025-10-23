@@ -17,7 +17,7 @@ public final class DuplicateFinder {
             throw new IllegalArgumentException("Input stream must not be null");
         }
 
-        //Using a LinkedHashMap to preserve insertion order
+        //Use a LinkedHashMap to preserve insertion order
         Map<T, Long> elementFrequency = new LinkedHashMap<>();
         list.forEach(element ->
                 elementFrequency.merge(element, 1L, Long::sum)
