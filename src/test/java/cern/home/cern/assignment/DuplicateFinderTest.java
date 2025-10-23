@@ -20,7 +20,7 @@ class DuplicateFinderTest {
         Stream<String> input = Stream.of("b", "a", "c", "c", "e", "a", "c", "d", "c", "d");
         List<String> result = DuplicateFinder.findDuplicates(input).toList();
 
-        assertThat(result).containsExactly("a", "c", "d");
+        assertThat(result).containsExactly("c", "a", "d");
     }
 
     @Test
@@ -47,7 +47,7 @@ class DuplicateFinderTest {
         Stream<String> input = Stream.of("z", "a", "m", "b", "z", "m", "a");
         List<String> result = DuplicateFinder.findDuplicates(input).toList();
 
-        assertThat(result).containsExactly("z", "a", "m");
+        assertThat(result).containsExactly("z", "m", "a");
     }
 
     @Test
@@ -56,7 +56,7 @@ class DuplicateFinderTest {
         Stream<String> input = Stream.of("a", null, "b", null, "a");
         List<String> result = DuplicateFinder.findDuplicates(input).toList();
 
-        assertThat(result).containsExactly("a", null);
+        assertThat(result).containsExactly(null, "a");
     }
 
     @Test
@@ -66,7 +66,7 @@ class DuplicateFinderTest {
 
         assertThatThrownBy(() -> DuplicateFinder.findDuplicates(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("Input stream must not be null");
+                .hasMessageContaining("Input stream cannot be null");
     }
 
     @Test

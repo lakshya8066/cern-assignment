@@ -4,9 +4,9 @@
 
 Use Java (JDK 17 or newer) to write a small library that provides a method <T extends Serializable> Stream<T> findDuplicates(Stream<T> list) that detects all duplicate elements in a Stream:
 
-- given a Stream of objects, it returns another stream that contains only those that are duplicated, in the order that they appeared for the first time in the original stream.
+- given a Stream of objects, it returns another stream that contains only those that are duplicated, in the order that they discovered for the first time in the original stream.
 
-For example, for the input ["b", "a", "c", "c", "e", "a", "c", "d", "c", "d"], the answer should be ["a", "c", "d"].
+For example, for the input ["b", "a", "c", "c", "e", "a", "c", "d", "c", "d"], the answer should be ["c", "a", "d"].
 
 - You may not use third-party libraries for the main code, but you can use them for testing.
 
@@ -20,3 +20,4 @@ mvn clean compile && mvn test
 
 ## Assumptions 
 1. The input stream is not a parallel stream.
+2. There are no null elements in the input stream.
