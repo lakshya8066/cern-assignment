@@ -11,6 +11,9 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+/**
+ * Tests suite for DuplicateFinder functionality.
+ */
 @DisplayName("DuplicateFinder Tests")
 class DuplicateFinderTest {
 
@@ -67,6 +70,20 @@ class DuplicateFinderTest {
         assertThatThrownBy(() -> DuplicateFinder.findDuplicates(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("Input stream cannot be null");
+    }
+
+    @Test
+    @DisplayName("Should throw IllegalArgumentException when capacity is zero or negative")
+    void givenInvalidCapacity_whenFindingDuplicates_thenThrowsIllegalArgumentException() {
+        Stream<String> input = Stream.of("a", "b", "c");
+
+        assertThatThrownBy(() -> DuplicateFinder.findDuplicates(input, 0))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Capacity must be positive");
+                
+        assertThatThrownBy(() -> DuplicateFinder.findDuplicates(input, -1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Capacity must be positive");
     }
 
     @Test

@@ -1,8 +1,8 @@
 # Maven
-target
+target/
 
 # IDE
-.idea
+.idea/
 
 # OS
 .DS_Store

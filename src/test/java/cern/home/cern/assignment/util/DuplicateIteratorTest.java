@@ -11,6 +11,9 @@ import java.util.NoSuchElementException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+/**
+ * Tests for DuplicateIterator functionality.
+ */
 @DisplayName("DuplicateIterator Tests")
 class DuplicateIteratorTest {
 

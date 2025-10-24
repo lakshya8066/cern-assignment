@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * Tests for BloomFilter functionality.
+ */
 @DisplayName("BloomFilter Tests")
 class BloomFilterTest {
 

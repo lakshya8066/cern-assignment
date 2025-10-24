@@ -14,12 +14,23 @@ public class BloomFilter {
     private final BitSet seenTwice;
     private final int capacity;
 
+    /**
+     * Creates a new BloomFilter with the specified capacity.
+     *
+     * @param capacity the size of the bit array
+     */
     public BloomFilter(int capacity) {
         this.capacity = capacity;
         this.seenOnce = new BitSet(capacity);
         this.seenTwice = new BitSet(capacity);
     }
 
+    /**
+     * Checks if an element has already been reported as duplicate.
+     *
+     * @param element the element to check
+     * @return true if already reported, false otherwise
+     */
     public boolean isAlreadyReported(Object element) {
         int[] hashes = computeHashes(element);
         for (int hash : hashes) {
@@ -30,6 +41,12 @@ public class BloomFilter {
         return true;
     }
 
+    /**
+     * Checks if an element is a duplicate (seen before).
+     *
+     * @param element the element to check
+     * @return true if element was seen before, false otherwise
+     */
     public boolean isDuplicate(Object element) {
         int[] hashes = computeHashes(element);
         for (int hash : hashes) {
@@ -40,6 +57,11 @@ public class BloomFilter {
         return true;
     }
 
+    /**
+     * Marks an element as seen for the first time.
+     *
+     * @param element the element to mark
+     */
     public void markAsSeen(Object element) {
         int[] hashes = computeHashes(element);
         for (int hash : hashes) {
@@ -47,6 +69,11 @@ public class BloomFilter {
         }
     }
 
+    /**
+     * Marks an element as reported (already returned as duplicate).
+     *
+     * @param element the element to mark
+     */
     public void markAsReported(Object element) {
         int[] hashes = computeHashes(element);
         for (int hash : hashes) {
