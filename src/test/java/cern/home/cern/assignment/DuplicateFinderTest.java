@@ -16,7 +16,7 @@ class DuplicateFinderTest {
 
     @Test
     @DisplayName("Should find duplicates in the example case")
-    void givenStreamWithMultipleDuplicates_whenFindingDuplicates_thenReturnsThemInOrderOfFirstAppearance() {
+    void givenStreamWithMultipleDuplicates_whenFindingDuplicates_thenReturnsThemInOrderOfFirstDiscovery() {
         Stream<String> input = Stream.of("b", "a", "c", "c", "e", "a", "c", "d", "c", "d");
         List<String> result = DuplicateFinder.findDuplicates(input).toList();
 
@@ -43,7 +43,7 @@ class DuplicateFinderTest {
 
     @Test
     @DisplayName("Should preserve order of first appearance")
-    void givenStreamWithDuplicates_whenFindingDuplicates_thenPreservesOrderOfFirstAppearance() {
+    void givenStreamWithDuplicates_whenFindingDuplicates_thenPreservesOrderOfFirstDiscovery() {
         Stream<String> input = Stream.of("z", "a", "m", "b", "z", "m", "a");
         List<String> result = DuplicateFinder.findDuplicates(input).toList();
 
