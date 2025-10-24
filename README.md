@@ -20,4 +20,4 @@ mvn clean compile && mvn test
 
 ## Assumptions 
 1. The input stream is not a parallel stream.
-2. There are no null elements in the input stream.
+2. Null elements are present in the input stream and considered valid.
